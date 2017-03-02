@@ -1,0 +1,47 @@
+{
+  "name": "node-multi-storage-azure-blob",
+  "version": "1.0.0",
+  "description": "Provides access to Azure Blob Storage for node-multi-storage.",
+  "main": "MultiStorageAzureBlob.js",
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielkbx/node-multi-storage-azure-blob.git"
+  },
+  "keywords": [
+    "node",
+    "multi-storage",
+    "storage",
+    "files",
+    "save",
+    "read",
+    "post",
+    "get",
+    "Azure",
+    "blob",
+    "Microsoft",
+    "Cloud"
+  ],
+  "author": "Daniel Wetzel",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/danielkbx/node-multi-storage-azure-blob/issues"
+  },
+  "homepage": "https://github.com/danielkbx/node-multi-storage-azure-blob#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "grunt": "^1.0.1",
+    "grunt-available-tasks": "^0.6.3",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-mocha-test": "^0.13.2",
+    "jshint": "^2.9.4",
+    "jshint-jenkins-checkstyle-reporter": "^0.1.2",
+    "jshint-stylish": "^2.2.1",
+    "load-grunt-config": "^0.19.2",
+    "mocha": "^3.2.0",
+    "node-multi-storage": "^2.0.1"
+  }
+}
