@@ -1,6 +1,6 @@
 {
   "name": "node-multi-storage-azure-blob",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Provides access to Azure Blob Storage for node-multi-storage.",
   "main": "MultiStorageAzureBlob.js",
   "scripts": {
