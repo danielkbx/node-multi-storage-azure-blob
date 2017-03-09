@@ -1,5 +1,7 @@
 'use strict';
 
+/*jshint -W030 */
+
 const expect = require('chai').expect;
 const _ = require('underscore');
 const MultiStorageLocal = require('../');
