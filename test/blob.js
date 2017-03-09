@@ -280,10 +280,11 @@ describe('Azure Blob Storage', () => {
 
 		it('posts the stream using the first folder as container', (done) => {
 			// given
-			let options = {name: 'folderascontainer/folder1/testfile.txt'};
+			let options = {name: 'folderascontainer/folder1/testfile.txt', contentType: 'text/plain'};
 			let provider = new MultiStorageAzureBlob({accountName: accountName, key: key, container: containerName, firstFolderIsContainer: true});
 
 			// when
+			let url = null;
 			provider.postStream(options)
 				.then((stream) => {
 					return new Promise((resolve, reject) => {
@@ -295,6 +296,7 @@ describe('Azure Blob Storage', () => {
 				.then((stream) => {
 					let expectedUrl = 'azure-blob://folderascontainer/folder1/testfile.txt';
 					expect(stream.url).to.equal(expectedUrl);
+					url = stream.url;
 
 					return new Promise((resolve, reject) => {
 						// then
@@ -303,11 +305,16 @@ describe('Azure Blob Storage', () => {
 								return reject(err);
 							}
 							expect(result).to.equal('some data');
-							resolve(stream.url);
+							resolve(stream);
 						});
 					});
 				})
-				.then((url) => provider.delete(url))
+				.then((stream) => provider._getProperties(stream.url))
+				.then((properties) => {
+					expect(properties.contentSettings.contentType).to.equal('text/plain');
+					return Promise.resolve();
+				})
+				.then(() => provider.delete(url))
 				.then(() => done())
 				.catch(err => done(err));
 		});
@@ -345,7 +352,6 @@ describe('Azure Blob Storage', () => {
 					.then(() => done())
 					.catch(err => done(err));
 			});
-
 		});
 
 	});

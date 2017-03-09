@@ -138,9 +138,13 @@ class MultiStorageAzureBlob {
 			manager._debug(printf('Posting stream %s in %s', name, containerName));
 		}
 		let url = this._urlForFilename(name, containerName);
+		let azureOptions = {contentSettings: {}};
+		if (_.isString(options.contentType)) {
+			azureOptions.contentSettings.contentType = options.contentType;
+		}
 		return this._createContainerIfNotExists(containerName)
 			.then((service) => {
-				let stream = service.createWriteStreamToBlockBlob(containerName, name);
+				let stream = service.createWriteStreamToBlockBlob(containerName, name, azureOptions);
 				stream.url = url;
 				return Promise.resolve(stream);
 			});
@@ -267,9 +271,5 @@ class MultiStorageAzureBlob {
 	}
 
 }
-
-MultiStorageAzureBlob.createWithConnectionString = function(connectionString) {
-
-};
 
 module.exports = MultiStorageAzureBlob;
